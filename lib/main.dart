@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './views/product_overview_screen.dart';
 import './utils/app_routes.dart';
+import './views/product_overview_screen.dart';
 import './views/product_details_screeen.dart';
+import './views/cart_screen.dart';
+
 import './providers/products.dart';
 import './providers/cart.dart';
 
@@ -31,7 +33,9 @@ class MyApp extends StatelessWidget {
         ),
         home: ProductOverviewScreen(),
         routes: {
-          AppRoutes.PRODUCT_DETAILS: (ctx) => ProductDetailsScreen(),
+          AppRoutes.PRODUCT_DETAILS: (ctx) => CartScreen(),
+          AppRoutes.CART: (ctx) => ProductDetailsScreen(),
+
         },
       ),
     );
