@@ -53,8 +53,9 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               ),
               onPressed: () {},
             ),
-            builder: (ctx, cart, child) => Badge(
+            builder: (_, cart, child) => Badge(
               value: cart.itemCount.toString(),
+              child: child,
             ),
           )
         ],
