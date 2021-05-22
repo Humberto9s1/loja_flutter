@@ -23,6 +23,25 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     _imageUrlFocusNode.addListener(_updateImage);
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_formData.isEmpty) {
+      final product = ModalRoute.of(context).settings.arguments as Product;
+
+      if (_formData.isEmpty) {
+        _formData['id'] = product.id;
+        _formData['title'] = product.title;
+        _formData['description'] = product.description;
+        _formData['price'] = product.price;
+        _formData['imageUrl'] = product.imageUrl;
+
+        _imageUrlController.text = _formData['imageUrl'];
+      }
+    }
+  }
+
   void _updateImage() {
     if (isValidImageUrl(_imageUrlController.text)) {
       setState(() {});
@@ -51,15 +70,22 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   void _saveForm() {
     _form.currentState.validate();
     _form.currentState.save();
-    final newProduct = Product(
+
+    final product = Product(
+      id: _formData['id'],
       title: _formData['title'],
       price: _formData['price'],
       description: _formData['description'],
       imageUrl: _formData['imageUrl'],
     );
-    
-    Provider.of<Products>(context, listen: false).addProduct(newProduct);
-    
+
+    final products = Provider.of<Products>(context, listen: false);
+    if (_formData['id'] == null) {
+      products.addProduct(product);
+    } else {
+      products.updateProduct(product);
+    }
+
     Navigator.of(context).pop();
   }
 
@@ -187,11 +213,11 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                     child: _imageUrlController.text.isEmpty
                         ? Text('Informe a URL')
                         : FittedBox(
-                      child: Image.network(
-                        _imageUrlController.text,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                            child: Image.network(
+                              _imageUrlController.text,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                   ),
                 ],
               ),
