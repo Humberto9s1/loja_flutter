@@ -6,6 +6,7 @@ class ProductFormScreen extends StatefulWidget {
 }
 
 class _ProductFormScreenState extends State<ProductFormScreen> {
+  final _priceFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +23,19 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                   labelText: 'Título'
                 ),
                 textInputAction: TextInputAction.next,
+                onFieldSubmitted: (_) {
+                  FocusScope.of(context).requestFocus(_priceFocusNode);
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Preço'
+                ),
+                textInputAction: TextInputAction.next,
+                focusNode: _priceFocusNode,
+                keyboardType: TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
               ),
             ],
           ),
