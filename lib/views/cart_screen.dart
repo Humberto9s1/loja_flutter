@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/cart.dart';
+import 'package:shop/providers/orders.dart';
+
 import '../widgets/cart_item_widget.dart';
+
+import '../providers/cart.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final Cart cart = Provider.of(context);
     final cartItems = cart.items.values.toList();
 
@@ -43,11 +45,15 @@ class CartScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {},
                     child: Text('Comprar'),
                     style: TextButton.styleFrom(
                       primary: Theme.of(context).primaryColor,
                     ),
+                    onPressed: () {
+                      Provider.of<Orders>(context, listen: false)
+                          .addOrder(cart);
+                      cart.clear();
+                    },
                   ),
                 ],
               ),
