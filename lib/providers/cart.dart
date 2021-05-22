@@ -76,7 +76,7 @@ class Cart with ChangeNotifier {
     } else {
       _items.update(
         productId,
-            (existingItem) => CartItem(
+        (existingItem) => CartItem(
           id: existingItem.id,
           productId: existingItem.productId,
           title: existingItem.title,

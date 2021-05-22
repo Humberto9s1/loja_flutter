@@ -16,9 +16,7 @@ class ProductItem extends StatelessWidget {
       leading: CircleAvatar(
         backgroundImage: NetworkImage(product.imageUrl),
       ),
-      title: Text(
-        product.title,
-      ),
+      title: Text(product.title),
       trailing: Container(
         width: 100,
         child: Row(

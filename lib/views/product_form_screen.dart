@@ -29,8 +29,8 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
 
     if (_formData.isEmpty) {
       final product = ModalRoute.of(context).settings.arguments as Product;
-
-      if (product != null) {
+      
+      if(product != null) {
         _formData['id'] = product.id;
         _formData['title'] = product.title;
         _formData['description'] = product.description;
@@ -70,7 +70,12 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   }
 
   void _saveForm() {
-    _form.currentState.validate();
+    var isValid = _form.currentState.validate();
+
+    if (!isValid) {
+      return;
+    }
+
     _form.currentState.save();
 
     final product = Product(
@@ -82,12 +87,11 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     );
 
     final products = Provider.of<Products>(context, listen: false);
-    if (_formData['id'] == null) {
+    if(_formData['id'] == null) {
       products.addProduct(product);
     } else {
       products.updateProduct(product);
     }
-
     Navigator.of(context).pop();
   }
 
@@ -110,7 +114,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
         child: Form(
           key: _form,
           child: ListView(
-            children: [
+            children: <Widget>[
               TextFormField(
                 initialValue: _formData['title'],
                 decoration: InputDecoration(labelText: 'Título'),
