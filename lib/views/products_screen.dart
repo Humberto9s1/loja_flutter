@@ -20,7 +20,7 @@ class ProductsScreen extends StatelessWidget {
             icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.of(context).pushNamed(
-                AppRoutes.PRODUCTS,
+                AppRoutes.PRODUCT_FORM,
               );
             },
           ),
