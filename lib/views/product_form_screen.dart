@@ -30,7 +30,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     if (_formData.isEmpty) {
       final product = ModalRoute.of(context).settings.arguments as Product;
 
-      if (_formData.isEmpty) {
+      if (product != null) {
         _formData['id'] = product.id;
         _formData['title'] = product.title;
         _formData['description'] = product.description;
@@ -38,6 +38,8 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
         _formData['imageUrl'] = product.imageUrl;
 
         _imageUrlController.text = _formData['imageUrl'];
+      } else {
+        _formData['price'] = '';
       }
     }
   }
