@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import '../providers/product.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Product product =
         ModalRoute.of(context).settings.arguments as Product;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(product.title),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: <Widget>[
             Container(
               height: 300,
               width: double.infinity,
@@ -22,9 +22,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Text(
               'R\$ ${product.price}',
               style: TextStyle(
@@ -32,13 +30,9 @@ class ProductDetailsScreen extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 10),
               width: double.infinity,
               child: Text(
                 product.description,

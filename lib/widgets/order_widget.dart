@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -20,7 +22,7 @@ class _OrderWidgetState extends State<OrderWidget> {
     return Card(
       margin: EdgeInsets.all(10),
       child: Column(
-        children: [
+        children: <Widget>[
           ListTile(
             title: Text('R\$ ${widget.order.total.toStringAsFixed(2)}'),
             subtitle: Text(
@@ -46,7 +48,7 @@ class _OrderWidgetState extends State<OrderWidget> {
                 children: widget.order.products.map((product) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: <Widget>[
                       Text(
                         product.title,
                         style: TextStyle(

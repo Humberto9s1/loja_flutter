@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/providers/orders.dart';
 
 import '../widgets/cart_item_widget.dart';
-
 import '../providers/cart.dart';
+import '../providers/orders.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -15,40 +14,34 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Carrinho'),
-        centerTitle: true,
       ),
       body: Column(
-        children: [
+        children: <Widget>[
           Card(
             margin: EdgeInsets.all(25),
             child: Padding(
               padding: EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: <Widget>[
                   Text(
                     'Total',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+                    style: TextStyle(fontSize: 20),
                   ),
                   SizedBox(width: 10),
                   Chip(
                     label: Text(
                       'R\$${cart.totalAmount}',
                       style: TextStyle(
-                        color:
-                            Theme.of(context).primaryTextTheme.headline6.color,
+                        color: Theme.of(context).primaryTextTheme.title.color,
                       ),
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   Spacer(),
-                  TextButton(
-                    child: Text('Comprar'),
-                    style: TextButton.styleFrom(
-                      primary: Theme.of(context).primaryColor,
-                    ),
+                  FlatButton(
+                    child: Text('COMPRAR'),
+                    textColor: Theme.of(context).primaryColor,
                     onPressed: () {
                       Provider.of<Orders>(context, listen: false)
                           .addOrder(cart);

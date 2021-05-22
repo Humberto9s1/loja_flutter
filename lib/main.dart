@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import './utils/app_routes.dart';
 
-import './views/product_overview_screen.dart';
-import './views/product_details_screeen.dart';
+import './views/products_overview_screen.dart';
+import './views/product_detail_screen.dart';
 import './views/cart_screen.dart';
 import './views/orders_screen.dart';
 
@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => Products(),
+          create: (_) => new Products(),
         ),
         ChangeNotifierProvider(
-          create: (_) => Cart(),
+          create: (_) => new Cart(),
         ),
         ChangeNotifierProvider(
-          create: (_) => Orders(),
+          create: (_) => new Orders(),
         ),
       ],
       child: MaterialApp(
@@ -37,10 +37,10 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
-        home: ProductOverviewScreen(),
+        // home: ProductOverviewScreen(),
         routes: {
-         // AppRoutes.HOME: (ctx) => ProductDetailsScreen(),
-          AppRoutes.PRODUCT_DETAILS: (ctx) => ProductDetailsScreen(),
+          AppRoutes.HOME: (ctx) => ProductOverviewScreen(),
+          AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailScreen(),
           AppRoutes.CART: (ctx) => CartScreen(),
           AppRoutes.ORDERS: (ctx) => OrdersScreen(),
         },

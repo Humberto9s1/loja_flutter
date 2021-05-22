@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/product_grid.dart';
-import '../widgets/app_drawer.dart';
 import '../widgets/badge.dart';
+import '../widgets/app_drawer.dart';
 import '../providers/cart.dart';
 import '../utils/app_routes.dart';
 
@@ -24,8 +24,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Minha Loja'),
-        centerTitle: true,
-        actions: [
+        actions: <Widget>[
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
               setState(() {
@@ -50,13 +49,9 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
           ),
           Consumer<Cart>(
             child: IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-              ),
+              icon: Icon(Icons.shopping_cart),
               onPressed: () {
-                Navigator.of(context).pushNamed(
-                 AppRoutes.CART
-                );
+                Navigator.of(context).pushNamed(AppRoutes.CART);
               },
             ),
             builder: (_, cart, child) => Badge(

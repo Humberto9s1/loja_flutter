@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import './cart.dart';
 
@@ -29,7 +29,7 @@ class Orders with ChangeNotifier {
     return _items.length;
   }
 
-  void addOrder (Cart cart) {
+  void addOrder(Cart cart) {
     _items.insert(
       0,
       Order(

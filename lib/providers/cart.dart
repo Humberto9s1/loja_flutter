@@ -57,8 +57,8 @@ class Cart with ChangeNotifier {
           id: Random().nextDouble().toString(),
           productId: product.id,
           title: product.title,
-          quantity: 1,
           price: product.price,
+          quantity: 1,
         ),
       );
     }
@@ -75,5 +75,4 @@ class Cart with ChangeNotifier {
     _items = {};
     notifyListeners();
   }
-
 }

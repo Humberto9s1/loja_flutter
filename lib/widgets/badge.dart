@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Badge extends StatelessWidget {
@@ -16,7 +15,7 @@ class Badge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
-      children: [
+      children: <Widget>[
         child,
         Positioned(
           right: 8,
@@ -39,7 +38,7 @@ class Badge extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        )
       ],
     );
   }

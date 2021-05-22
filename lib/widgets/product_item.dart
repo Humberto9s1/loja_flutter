@@ -5,11 +5,10 @@ import '../providers/cart.dart';
 import '../utils/app_routes.dart';
 
 class ProductItem extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-  final Product product = Provider.of<Product>(context, listen: false);
-  final Cart cart = Provider.of<Cart>(context, listen: false);
+    final Product product = Provider.of<Product>(context, listen: false);
+    final Cart cart = Provider.of<Cart>(context, listen: false);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
@@ -17,7 +16,7 @@ class ProductItem extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).pushNamed(
-              AppRoutes.PRODUCT_DETAILS,
+              AppRoutes.PRODUCT_DETAIL,
               arguments: product,
             );
           },
@@ -30,7 +29,8 @@ class ProductItem extends StatelessWidget {
           backgroundColor: Colors.black87,
           leading: Consumer<Product>(
             builder: (ctx, product, _) => IconButton(
-              icon: Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border),
+              icon: Icon(
+                  product.isFavorite ? Icons.favorite : Icons.favorite_border),
               color: Theme.of(context).accentColor,
               onPressed: () {
                 product.toggleFavorite();
@@ -46,7 +46,6 @@ class ProductItem extends StatelessWidget {
             color: Theme.of(context).accentColor,
             onPressed: () {
               cart.addItem(product);
-              print(cart.itemsCount);
             },
           ),
         ),
