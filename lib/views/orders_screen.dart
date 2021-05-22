@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgets/app_drawer.dart';
 
 class OrdersScreen extends StatelessWidget {
-  const OrdersScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +10,7 @@ class OrdersScreen extends StatelessWidget {
         title: Text('Meus Pedidos'),
         centerTitle: true,
       ),
+      drawer: AppDrawer(),
     );
   }
 }
