@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop/exceptions/http_exceptions.dart';
 import './product.dart';
 
 class Products with ChangeNotifier {
@@ -95,7 +96,7 @@ class Products with ChangeNotifier {
       final product = _items[index];
 
       final Uri _url3 = Uri.parse(
-          "https://flutter-hbt-default-rtdb.firebaseio.com/products/${product.id}.jso");
+          "https://flutter-hbt-default-rtdb.firebaseio.com/products/${product.id}.json");
 
       _items.remove(product);
       notifyListeners();
@@ -105,9 +106,8 @@ class Products with ChangeNotifier {
       if (response.statusCode >= 400) {
         _items.insert(index, product);
         notifyListeners();
-      } else {
-
-      }
+        throw HttpException('Ocorreu um erro na exclusão do produto');
+      } 
     }
   }
 }
