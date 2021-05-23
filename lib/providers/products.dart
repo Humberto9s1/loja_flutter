@@ -7,6 +7,9 @@ import './product.dart';
 import '../data/dummy_data.dart';
 
 class Products with ChangeNotifier {
+  final Uri _url = Uri.parse(
+      "https://flutter-hbt-default-rtdb.firebaseio.com/products.json");
+
   List<Product> _items = DUMMY_PRODUCTS;
 
   List<Product> get items => [..._items];
@@ -19,12 +22,14 @@ class Products with ChangeNotifier {
     return _items.where((prod) => prod.isFavorite).toList();
   }
 
-  Future<void> addProduct(Product newProduct) async {
-    Uri url = Uri.parse(
-        "https://flutter-hbt-default-rtdb.firebaseio.com/products.json");
+  Future<void> loadProducts() async {
+    final response = await http.get(_url);
+    print(json.decode(response.body));
+  }
 
+  Future<void> addProduct(Product newProduct) async {
     final response = await http.post(
-      url,
+      _url,
       body: json.encode({
         'title': newProduct.title,
         'description': newProduct.description,
