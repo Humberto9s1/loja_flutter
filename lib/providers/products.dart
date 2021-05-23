@@ -21,7 +21,7 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(Product newProduct) {
     Uri url = Uri.parse(
-        "https://flutter-hbt-default-rtdb.firebaseio.com/products.json");
+        "https://flutter-hbt-default-rtdb.firebaseio.com/products");
     return http.post(
       url,
       body: json.encode({
