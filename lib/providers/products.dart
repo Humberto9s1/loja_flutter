@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -76,24 +75,39 @@ class Products with ChangeNotifier {
         "https://flutter-hbt-default-rtdb.firebaseio.com/products/${product.id}.json");
     if (index >= 0) {
       await http.patch(
-          _url2,
-          body: json.encode({
-            'title': product.title,
-            'description': product.description,
-            'price': product.price,
-            'imageUrl': product.imageUrl,
-          }),
+        _url2,
+        body: json.encode({
+          'title': product.title,
+          'description': product.description,
+          'price': product.price,
+          'imageUrl': product.imageUrl,
+        }),
       );
       _items[index] = product;
       notifyListeners();
     }
   }
 
-  void deleteProduct(String id) {
+  Future<void> deleteProduct(String id) async {
     final index = _items.indexWhere((prod) => prod.id == id);
+
     if (index >= 0) {
-      _items.removeWhere((prod) => prod.id == id);
+      final product = _items[index];
+
+      final Uri _url3 = Uri.parse(
+          "https://flutter-hbt-default-rtdb.firebaseio.com/products/${product.id}.jso");
+
+      _items.remove(product);
       notifyListeners();
+
+      final response = await http.delete(_url3);
+
+      if (response.statusCode >= 400) {
+        _items.insert(index, product);
+        notifyListeners();
+      } else {
+
+      }
     }
   }
 }
