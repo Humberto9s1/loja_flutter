@@ -4,7 +4,7 @@ class HttpException implements Exception {
   const HttpException(this.msg);
 
   @override
-  String toString(){
+  String toString() {
     return msg;
   }
 }

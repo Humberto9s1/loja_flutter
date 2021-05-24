@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/providers/products.dart';
 import '../widgets/product_grid.dart';
 import '../widgets/badge.dart';
 import '../widgets/app_drawer.dart';
 import '../providers/cart.dart';
-import '../providers/products.dart';
 import '../utils/app_routes.dart';
 
 enum FilterOptions {
@@ -24,7 +24,6 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   @override
   void initState() {
     super.initState();
-    // Carregar os produtos
     Provider.of<Products>(context, listen: false).loadProducts().then((_) {
       setState(() {
         _isLoading = false;
